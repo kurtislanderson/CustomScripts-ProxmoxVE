@@ -74,6 +74,8 @@ Then restart the service:
 systemctl restart homebox-companion
 ```
 
+To update later, run the same Proxmox host install command again and choose the update path when the script detects the existing container.
+
 ### Configuration Model
 
 Homebox Companion uses a two-layer configuration:

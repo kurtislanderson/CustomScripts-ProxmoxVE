@@ -49,6 +49,7 @@ HBC_HOMEBOX_URL=
 HBC_SERVER_HOST=0.0.0.0
 HBC_SERVER_PORT=8000
 HBC_LOG_LEVEL=INFO
+HBC_CORS_ORIGINS=*
 
 # BOOTSTRAP ONLY (seed data/settings.yaml on first boot, then use Settings UI):
 HBC_LLM_API_BASE=
@@ -84,7 +85,8 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl enable -q --now homebox-companion
+$STD systemctl daemon-reload
+$STD systemctl enable -q --now homebox-companion
 msg_ok "Created and Started Service"
 
 motd_ssh
