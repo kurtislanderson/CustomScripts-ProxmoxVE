@@ -66,7 +66,7 @@ set -a
 source /opt/homebox-companion/.env
 set +a
 cd /opt/homebox-companion
-exec uv run python -m server.app
+exec /usr/local/bin/uv run python -m server.app
 EOF
 chmod +x /opt/homebox-companion/start.sh
 msg_ok "Created Start Script"
