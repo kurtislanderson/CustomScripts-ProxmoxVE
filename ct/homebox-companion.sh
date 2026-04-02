@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 
+# Patch build_container to fetch install script from this repo instead of community-scripts
+eval "$(declare -f build_container | sed 's|https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/install/${var_install}|https://raw.githubusercontent.com/kurtislanderson/CustomScripts-ProxmoxVE/main/install/${var_install}|g')"
+
 # Copyright (c) 2026 Kurt Anderson
 # Author: Kurt Anderson
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
