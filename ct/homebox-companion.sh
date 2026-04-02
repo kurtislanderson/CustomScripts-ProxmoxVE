@@ -38,13 +38,13 @@ function update_script() {
     NODE_VERSION="22" setup_nodejs
 
     msg_info "Stopping Service"
-    $STD systemctl stop homebox-companion
+    systemctl stop homebox-companion
     msg_ok "Stopped Service"
 
     # Backup persistent data and config (conditional — may not exist on early update)
     msg_info "Backing up data and configuration"
-    [[ -d /opt/homebox-companion/data ]] && $STD cp -r /opt/homebox-companion/data /opt/homebox-companion-data-backup
-    [[ -f /opt/homebox-companion/.env ]] && $STD cp -f /opt/homebox-companion/.env /opt/homebox-companion.env.backup
+    [[ -d /opt/homebox-companion/data ]] && cp -r /opt/homebox-companion/data /opt/homebox-companion-data-backup
+    [[ -f /opt/homebox-companion/.env ]] && cp -f /opt/homebox-companion/.env /opt/homebox-companion.env.backup
     msg_ok "Backup complete"
 
     # Fetch and deploy new release (CLEAN_INSTALL wipes target dir — data already backed up above)
@@ -69,10 +69,10 @@ function update_script() {
     msg_info "Restoring data and configuration"
     if [[ -d /opt/homebox-companion-data-backup ]]; then
       rm -rf /opt/homebox-companion/data
-      $STD mv /opt/homebox-companion-data-backup /opt/homebox-companion/data
+      mv /opt/homebox-companion-data-backup /opt/homebox-companion/data
     fi
     mkdir -p /opt/homebox-companion/data
-    [[ -f /opt/homebox-companion.env.backup ]] && $STD mv -f /opt/homebox-companion.env.backup /opt/homebox-companion/.env
+    [[ -f /opt/homebox-companion.env.backup ]] && mv -f /opt/homebox-companion.env.backup /opt/homebox-companion/.env
     msg_ok "Restored data and configuration"
 
     # Regenerate start script (ensures it matches current version)
@@ -85,11 +85,11 @@ set +a
 cd /opt/homebox-companion
 exec uv run python -m server.app
 EOF
-    $STD chmod +x /opt/homebox-companion/start.sh
+    chmod +x /opt/homebox-companion/start.sh
     msg_ok "Created Start Script"
 
     msg_info "Starting Service"
-    $STD systemctl start homebox-companion
+    systemctl start homebox-companion
     msg_ok "Started Service"
     msg_ok "Updated successfully!"
   fi

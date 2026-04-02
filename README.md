@@ -20,7 +20,7 @@ Personal Proxmox VE scripts for creating LXC containers and VMs, following the [
 Run from the **Proxmox host shell** (not inside a container):
 
 ```bash
-bash -c "$(wget -qLO - https://raw.githubusercontent.com/<your-user>/CustomScripts-ProxmoxVE/main/ct/homebox-companion.sh)"
+bash -c "$(wget -qLO - https://raw.githubusercontent.com/kurtislanderson/CustomScripts-ProxmoxVE/main/ct/homebox-companion.sh)"
 ```
 
 This launches the community-scripts wizard — configure resources, networking, and storage interactively, then the LXC container is created and the app installed automatically.

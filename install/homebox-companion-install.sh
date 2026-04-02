@@ -15,8 +15,8 @@ update_os
 
 msg_info "Installing Dependencies"
 $STD apt-get install -y \
-  curl \
-  git
+  build-essential \
+  curl
 msg_ok "Installed Dependencies"
 
 PYTHON_VERSION="3.12" setup_uv
@@ -67,7 +67,7 @@ set +a
 cd /opt/homebox-companion
 exec uv run python -m server.app
 EOF
-$STD chmod +x /opt/homebox-companion/start.sh
+chmod +x /opt/homebox-companion/start.sh
 msg_ok "Created Start Script"
 
 msg_info "Creating Systemd Service"
@@ -85,8 +85,8 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-$STD systemctl daemon-reload
-$STD systemctl enable -q --now homebox-companion
+systemctl daemon-reload
+systemctl enable -q --now homebox-companion
 msg_ok "Created and Started Service"
 
 motd_ssh
