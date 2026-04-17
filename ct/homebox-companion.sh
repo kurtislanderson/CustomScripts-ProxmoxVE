@@ -59,6 +59,7 @@ function update_script() {
     cd /opt/homebox-companion/frontend
     $STD npm ci
     $STD npm run build
+    mkdir -p /opt/homebox-companion/server/static
     $STD cp -r /opt/homebox-companion/frontend/build/* /opt/homebox-companion/server/static/
     msg_ok "Built Frontend"
 
